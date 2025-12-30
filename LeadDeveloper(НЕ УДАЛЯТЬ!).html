@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личная База Знаний: Roblox Lead 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        .code-font { font-family: 'JetBrains Mono', monospace; }
+        
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            margin: auto;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(229, 231, 235, 0.5);
+        }
+    </style>
+    <!-- Chosen Palette: Slate & Soft Amber -->
+</head>
+<body class="bg-[#f8f9fa] text-slate-900 selection:bg-amber-200">
+
+    <!-- Application Structure Plan:
+         1. Навигация и Статус: Отображение текущего уровня (Lead Developer).
+         2. Визуализация: Распределение 20 основ по категориям через Chart.js.
+         3. Интерактивная песочница: Симуляция работы Debounce.
+         4. Фильтруемый Кодекс: Все 20 инструментов с возможностью просмотра и копирования кода.
+    -->
+
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="bg-slate-900 text-white p-2 rounded-lg font-black text-xl">RL</div>
+                <div>
+                    <h1 class="font-extrabold text-lg leading-none">Roblox Lead Dashboard</h1>
+                    <p class="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Personal Knowledge Base</p>
+                </div>
+            </div>
+            <div class="hidden md:flex gap-6 text-sm font-bold text-slate-600">
+                <a href="#analytics" class="hover:text-amber-600 transition-colors">Аналитика</a>
+                <a href="#lab" class="hover:text-amber-600 transition-colors">Лаборатория</a>
+                <a href="#codex" class="hover:text-amber-600 transition-colors">Кодекс</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-10 space-y-16">
+
+        <!-- Секция Аналитики -->
+        <section id="analytics" class="grid lg:grid-cols-2 gap-10 items-center">
+            <div class="space-y-6">
+                <h2 class="text-4xl font-black tracking-tight">Твой фундамент <span class="text-amber-600">Lead Developer</span></h2>
+                <p class="text-slate-600 text-lg leading-relaxed">
+                    Программирование в Roblox — это баланс между физикой мира, серверной логикой и взаимодействием с игроком. 
+                    Эта база содержит 20 ключевых инструментов, которые покрывают 80% всех задач в разработке.
+                </p>
+                <div class="flex gap-3">
+                    <div class="px-4 py-2 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+                        <span class="text-xs font-bold uppercase">Архитектура</span>
+                    </div>
+                    <div class="px-4 py-2 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-purple-500"></span>
+                        <span class="text-xs font-bold uppercase">Логика</span>
+                    </div>
+                    <div class="px-4 py-2 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                        <span class="text-xs font-bold uppercase">Физика</span>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card p-8 rounded-3xl shadow-xl">
+                <div class="chart-container">
+                    <canvas id="mainStatsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Интерактивная Лаборатория (Debounce) -->
+        <section id="lab" class="bg-slate-900 rounded-[2.5rem] p-10 text-white overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-[100px] -mr-20 -mt-20"></div>
+            
+            <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="inline-block px-3 py-1 bg-amber-500/20 text-amber-500 rounded-full text-xs font-bold uppercase tracking-widest">Песочница</div>
+                    <h3 class="text-3xl font-bold">Симулятор Debounce (Защита)</h3>
+                    <p class="text-slate-400">Попробуй быстро нажимать на кнопку. Лид-код не даст функции выполниться чаще одного раза в 2 секунды. Это спасает сервер от лагов.</p>
+                    
+                    <div class="flex items-center gap-6">
+                        <button id="testBtn" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-black py-4 px-8 rounded-2xl shadow-lg transition-all active:scale-95 disabled:opacity-50">
+                            НАЖМИ МЕНЯ!
+                        </button>
+                        <div id="statusTag" class="text-sm font-mono text-emerald-400 animate-pulse">СТАТУС: ГОТОВ</div>
+                    </div>
+                </div>
+                
+                <div class="bg-black/40 border border-slate-800 rounded-2xl p-6 h-64 overflow-y-auto code-font text-sm flex flex-col gap-2" id="console">
+                    <p class="text-slate-500">// Консоль разработчика инициализирована...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция Кодекса -->
+        <section id="codex" class="space-y-8">
+            <div class="flex flex-col md:flex-row justify-between items-end gap-6">
+                <div class="space-y-2">
+                    <h3 class="text-3xl font-bold">Кодекс инструментов</h3>
+                    <p class="text-slate-500">Нажми на карточку, чтобы изучить код и логику.</p>
+                </div>
+                <div class="flex bg-white p-1.5 rounded-2xl shadow-sm border border-slate-200" id="filterGroup">
+                    <button data-filter="all" class="filter-btn px-6 py-2.5 rounded-xl text-sm font-bold bg-slate-900 text-white transition-all">Все</button>
+                    <button data-filter="Архитектура" class="filter-btn px-6 py-2.5 rounded-xl text-sm font-bold text-slate-500 hover:text-slate-900 transition-all">Архитектура</button>
+                    <button data-filter="Логика" class="filter-btn px-6 py-2.5 rounded-xl text-sm font-bold text-slate-500 hover:text-slate-900 transition-all">Логика</button>
+                    <button data-filter="Физика" class="filter-btn px-6 py-2.5 rounded-xl text-sm font-bold text-slate-500 hover:text-slate-900 transition-all">Физика</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="grid">
+                <!-- Карточки генерируются скриптом -->
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-slate-400 text-sm font-bold uppercase tracking-widest">Lead Developer Portal &bull; 2025</p>
+        </div>
+    </footer>
+
+    <!-- Modal Window -->
+    <div id="modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-slate-950/60 backdrop-blur-md opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-4xl rounded-[2rem] shadow-2xl overflow-hidden flex flex-col transform scale-95 transition-transform duration-300">
+            <div class="px-8 py-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                <div>
+                    <h4 id="modalTitle" class="text-2xl font-black text-slate-900">Заголовок</h4>
+                    <p id="modalCategory" class="text-xs font-bold text-amber-600 uppercase tracking-widest"></p>
+                </div>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-900 text-3xl font-light">&times;</button>
+            </div>
+            <div class="p-8 bg-[#1e1e1e] overflow-x-auto">
+                <pre><code id="modalCode" class="code-font text-amber-100 text-sm leading-relaxed"></code></pre>
+            </div>
+            <div class="p-6 bg-white border-t border-slate-100 flex justify-end gap-4">
+                <button onclick="copyToClipboard()" class="px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold transition-all">Скопировать код</button>
+                <button onclick="closeModal()" class="px-6 py-3 bg-slate-900 text-white rounded-xl font-bold">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- ДАННЫЕ (Source Report) ---
+        const codex = [
+            { id: 1, title: "Сервисы (Services)", category: "Архитектура", icon: "📦", desc: "Главные модули движка. Объявляются в начале.", code: `local Players = game:GetService("Players")\nlocal ReplicatedStorage = game:GetService("ReplicatedStorage")\nlocal ServerStorage = game:GetService("ServerStorage")\nlocal Debris = game:GetService("Debris")` },
+            { id: 2, title: "Поиск объектов", category: "Логика", icon: "🔍", desc: "Безопасное ожидание загрузки деталей.", code: `local part = workspace:WaitForChild("MyPart") -- Ждем загрузки\nlocal check = workspace:FindFirstChild("MyPart") -- Проверяем наличие` },
+            { id: 3, title: "Debounce (Защита)", category: "Логика", icon: "🛡️", desc: "Ограничение скорости выполнения функций.", code: `local db = false\n-- Внутри события:\nif not db then\n    db = true\n    -- Действие\n    task.wait(2)\n    db = false\nend` },
+            { id: 4, title: "Урон (Damage)", category: "Физика", icon: "⚔️", desc: "Как правильно убивать врагов.", code: `part.Touched:Connect(function(hit)\n    local hum = hit.Parent:FindFirstChild("Humanoid")\n    if hum then hum:TakeDamage(10) end\nend)` },
+            { id: 5, title: "Клоны и Debris", category: "Архитектура", icon: "♻️", desc: "Создание и авто-удаление мусора.", code: `local copy = item:Clone()\ncopy.Parent = workspace\ngame:GetService("Debris"):AddItem(copy, 5) -- Само удалится через 5с` },
+            { id: 6, title: "Дистанция (Magnitude)", category: "Физика", icon: "📏", desc: "Проверка расстояния между точками.", code: `local dist = (p1 - p2).Magnitude\nif dist < 10 then print("Близко!") end` },
+            { id: 7, title: "CFrame (Позиция)", category: "Физика", icon: "🌀", desc: "Управление координатами и поворотом.", code: `part.CFrame = part.CFrame * CFrame.new(0, 5, 0) -- Вверх\npart.CFrame = CFrame.lookAt(pos1, pos2) -- Поворот к цели` },
+            { id: 8, title: "Инвентарь", category: "Логика", icon: "📁", desc: "Backpack и StarterGear игрока.", code: `player.Backpack -- Сейчас в руках\nplayer.StarterGear -- Останется после смерти` },
+            { id: 9, title: "Лидерборд", category: "Логика", icon: "📊", desc: "Таблица очков через leaderstats.", code: `local stats = Instance.new("Folder")\nstats.Name = "leaderstats"\nstats.Parent = player` },
+            { id: 10, title: "Task.Spawn", category: "Архитектура", icon: "⚡", desc: "Запуск кода без остановки скрипта.", code: `task.spawn(function()\n    print("Я работаю в фоне")\nend)` },
+            { id: 11, title: "Remote Events", category: "Архитектура", icon: "📡", desc: "Связь Клиента и Сервера.", code: `Remote:FireServer() -- С клиента\nRemote.OnServerEvent:Connect(function(player) ... end) -- На сервере` },
+            { id: 12, title: "Raycast (Лучи)", category: "Физика", icon: "🔦", desc: "Лазерное обнаружение объектов.", code: `local result = workspace:Raycast(origin, dir * 100, params)\nif result then print(result.Instance.Name) end` },
+            { id: 13, title: "Цикл GetChildren", category: "Логика", icon: "📜", desc: "Перебор объектов внутри папки.", code: `for _, v in pairs(folder:GetChildren()) do\n    if v:IsA("BasePart") then v.Color = Color3.new(1,0,0) end\nend` },
+            { id: 14, title: "Deep Search", category: "Логика", icon: "🕸️", desc: "Поиск во всех вложенных папках.", code: `local all = workspace.Map:GetDescendants()` },
+            { id: 15, title: "Destroy (Удаление)", category: "Архитектура", icon: "🛑", desc: "Полное удаление из памяти.", code: `object:Destroy()` },
+            { id: 16, title: "Отладка (Debug)", category: "Архитектура", icon: "📢", desc: "Логирование в консоль.", code: `print("Обычный")\nwarn("Предупреждение")\nerror("Критическая ошибка")` },
+            { id: 17, title: "Task.Wait", category: "Архитектура", icon: "⏳", desc: "Точное ожидание (замена wait).", code: `task.wait(0.5) -- Оптимально для движка` },
+            { id: 18, title: "IsA (Проверка)", category: "Логика", icon: "🧬", desc: "Проверка класса объекта.", code: `if object:IsA("Part") then ... end` },
+            { id: 20, title: "Модули", category: "Архитектура", icon: "🧠", desc: "Обмен кодом между скриптами.", code: `local MyModule = require(script.ModuleScript)` }
+        ];
+
+        // --- ИНИЦИАЛИЗАЦИЯ ГРАФИКА ---
+        const statsData = {
+            "Архитектура": codex.filter(x => x.category === "Архитектура").length,
+            "Логика": codex.filter(x => x.category === "Логика").length,
+            "Физика": codex.filter(x => x.category === "Физика").length,
+        };
+
+        new Chart(document.getElementById('mainStatsChart'), {
+            type: 'polarArea',
+            data: {
+                labels: Object.keys(statsData),
+                datasets: [{
+                    data: Object.values(statsData),
+                    backgroundColor: ['rgba(59, 130, 246, 0.5)', 'rgba(168, 85, 247, 0.5)', 'rgba(16, 185, 129, 0.5)'],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { r: { ticks: { display: false } } },
+                plugins: { legend: { position: 'bottom' } }
+            }
+        });
+
+        // --- ГЕНЕРАЦИЯ КАРТОЧЕК ---
+        const grid = document.getElementById('grid');
+        function render(filter = 'all') {
+            grid.innerHTML = '';
+            codex.filter(x => filter === 'all' || x.category === filter).forEach(item => {
+                const card = document.createElement('div');
+                card.className = "glass-card p-6 rounded-3xl hover:shadow-2xl hover:-translate-y-2 transition-all cursor-pointer group border-b-4";
+                card.style.borderBottomColor = item.category === 'Архитектура' ? '#3b82f6' : item.category === 'Логика' ? '#a855f7' : '#10b981';
+                card.onclick = () => openModal(item);
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-4xl group-hover:scale-110 transition-transform">${item.icon}</span>
+                        <span class="text-[10px] font-black text-slate-300 uppercase">ID: ${item.id}</span>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">${item.title}</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">${item.desc}</p>
+                `;
+                grid.appendChild(card);
+            });
+        }
+        render();
+
+        // --- ФИЛЬТРАЦИЯ ---
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.onclick = () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.className = "filter-btn px-6 py-2.5 rounded-xl text-sm font-bold text-slate-500 hover:text-slate-900 transition-all");
+                btn.className = "filter-btn px-6 py-2.5 rounded-xl text-sm font-bold bg-slate-900 text-white transition-all";
+                render(btn.dataset.filter);
+            };
+        });
+
+        // --- MODAL ---
+        const modal = document.getElementById('modal');
+        function openModal(item) {
+            document.getElementById('modalTitle').innerText = item.title;
+            document.getElementById('modalCategory').innerText = item.category;
+            document.getElementById('modalCode').innerText = item.code;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modal.classList.add('opacity-100');
+                modal.firstElementChild.classList.remove('scale-95');
+                modal.firstElementChild.classList.add('scale-100');
+            }, 10);
+        }
+        function closeModal() {
+            modal.classList.remove('opacity-100');
+            modal.firstElementChild.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function copyToClipboard() {
+            const text = document.getElementById('modalCode').innerText;
+            navigator.clipboard.writeText(text);
+            alert("Код скопирован!");
+        }
+
+        // --- LAB LOGIC (Debounce) ---
+        let debounceActive = false;
+        const testBtn = document.getElementById('testBtn');
+        const consoleEl = document.getElementById('console');
+        const statusTag = document.getElementById('statusTag');
+
+        testBtn.onclick = () => {
+            if (debounceActive) {
+                const p = document.createElement('p');
+                p.className = "text-red-400";
+                p.innerText = `[ОШИБКА] Спам заблокирован! (Кулдаун ещё идет)`;
+                consoleEl.prepend(p);
+                return;
+            }
+
+            debounceActive = true;
+            testBtn.disabled = true;
+            statusTag.innerText = "СТАТУС: ЗАНЯТ (Остывает...)";
+            statusTag.className = "text-sm font-mono text-amber-500";
+            
+            const p = document.createElement('p');
+            p.className = "text-emerald-400";
+            p.innerText = `[УСПЕХ] Функция выполнена! (Сервер в безопасности)`;
+            consoleEl.prepend(p);
+
+            setTimeout(() => {
+                debounceActive = false;
+                testBtn.disabled = false;
+                statusTag.innerText = "СТАТУС: ГОТОВ";
+                statusTag.className = "text-sm font-mono text-emerald-400 animate-pulse";
+            }, 2000);
+        };
+    </script>
+</body>
+</html>
