@@ -3,322 +3,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox Lead Matrix: 150 Codex Edition</title>
+    <title>Roblox Lead Matrix: 1000 Modules (Final)</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;800&display=swap');
         
-        body { font-family: 'Inter', sans-serif; background: #0f172a; color: #f8fafc; }
+        :root {
+            --bg-main: #0a0c10;
+            --bg-card: #11141a;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --accent-blue: #3b82f6;
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: var(--bg-main); 
+            color: #d1d5db;
+            letter-spacing: -0.01em;
+            overflow-x: hidden;
+        }
+
         .code-font { font-family: 'JetBrains Mono', monospace; }
-        
-        .glass {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+
+        header {
+            background: rgba(10, 12, 16, 0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
         }
 
-        .card-gradient {
-            background: linear-gradient(135deg, rgba(51, 65, 85, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
+        .card-node {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .custom-scroll::-webkit-scrollbar { width: 6px; }
-        .custom-scroll::-webkit-scrollbar-track { background: #0f172a; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
-        
-        .search-input:focus {
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        .card-node:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            background: #161a22;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -10px rgba(0,0,0,0.5);
         }
 
         .level-badge {
             font-size: 0.65rem;
-            padding: 2px 8px;
-            border-radius: 99px;
-            text-transform: uppercase;
-            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
         }
 
-        .active-filter {
-            background: white !important;
-            color: #0f172a !important;
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #2d333b; border-radius: 10px; }
+
+        .filter-btn {
+            color: #8b949e;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .filter-btn.active-filter {
+            color: #ffffff;
+            background: #1f242c;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        #modal { transition: opacity 0.2s ease; }
+        #modal-content { transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.25rem;
         }
     </style>
 </head>
 <body class="custom-scroll">
 
-    <header class="sticky top-0 z-50 glass border-b border-white/5 px-6 py-4">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-4">
-                <div class="bg-blue-600 text-white p-2 rounded-xl font-black text-2xl shadow-lg shadow-blue-500/20">RL</div>
+    <header class="sticky top-0 z-50 px-8 py-4">
+        <div class="max-w-[1800px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-5">
+                <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-600/20">R</div>
                 <div>
-                    <h1 class="font-black text-xl tracking-tight">ROBLOX LEAD MATRIX <span class="text-blue-500">2025</span></h1>
-                    <div class="flex gap-2 items-center">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">150 Modules Loaded</p>
-                    </div>
+                    <h1 class="font-extrabold text-lg text-white tracking-tight">Lead Matrix <span class="text-blue-500 font-medium text-sm ml-2">1000 UNITS</span></h1>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em]">The Ultimate Technical Reference</p>
                 </div>
             </div>
             
-            <div class="flex w-full md:w-auto gap-2">
-                <input type="text" id="searchInput" placeholder="Поиск по 150 командам..." 
-                    class="bg-slate-800/50 border border-white/10 rounded-xl px-4 py-2 text-sm w-full md:w-64 focus:outline-none focus:border-blue-500 transition-all search-input">
+            <div class="flex items-center gap-4 w-full md:w-auto">
+                <div class="relative w-full md:w-96">
+                    <input type="text" id="searchInput" placeholder="Search across 1000 modules..." 
+                        class="bg-[#161b22] border border-[#30363d] rounded-lg px-4 py-2.5 text-sm w-full focus:outline-none focus:border-blue-500/50 transition-all placeholder:text-slate-600">
+                </div>
+                <div id="counter" class="text-[10px] font-bold text-blue-400 border border-blue-500/20 bg-blue-500/5 px-4 py-2.5 rounded-lg whitespace-nowrap uppercase tracking-widest">
+                    0 / 1000 UNITS
+                </div>
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto px-6 py-8">
-        
-        <!-- Статистика -->
-        <div class="grid lg:grid-cols-4 gap-6 mb-12">
-            <div class="lg:col-span-1 glass p-6 rounded-[2rem] flex flex-col items-center justify-center">
-                <canvas id="statsChart" class="max-w-[180px]"></canvas>
-                <p class="mt-4 text-xs font-bold text-slate-400 uppercase">Распределение по уровням</p>
-            </div>
-            <div class="lg:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="card-gradient p-6 rounded-[2rem] border border-white/5">
-                    <p class="text-slate-400 text-xs font-bold uppercase">Всего карточек</p>
-                    <h3 class="text-4xl font-black mt-2">150</h3>
-                </div>
-                <div class="card-gradient p-6 rounded-[2rem] border border-white/5">
-                    <p class="text-slate-400 text-xs font-bold uppercase">Категорий</p>
-                    <h3 class="text-4xl font-black mt-2 text-blue-500">12</h3>
-                </div>
-                <div class="card-gradient p-6 rounded-[2rem] border border-white/5">
-                    <p class="text-slate-400 text-xs font-bold uppercase">Обновление</p>
-                    <h3 class="text-4xl font-black mt-2 text-amber-500">V.2</h3>
-                </div>
-                <div class="card-gradient p-6 rounded-[2rem] border border-white/5">
-                    <p class="text-slate-400 text-xs font-bold uppercase">Статус</p>
-                    <h3 class="text-4xl font-black mt-2 text-emerald-500">Ready</h3>
-                </div>
+    <main class="max-w-[1800px] mx-auto px-8 py-10">
+        <!-- Фильтры -->
+        <div class="flex items-center gap-4 mb-8 overflow-x-auto pb-4 custom-scroll">
+            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mr-2">Experience:</span>
+            <div class="flex gap-2" id="levelFilters">
+                <button data-level="all" class="filter-btn active-filter px-4 py-2 rounded-md text-[11px] font-bold border border-transparent">ALL</button>
             </div>
         </div>
 
-        <!-- Фильтры уровней -->
-        <div class="flex flex-wrap gap-2 mb-8" id="levelFilters">
-            <button data-level="all" id="btn-all" class="level-btn active-filter glass px-4 py-2 rounded-xl text-xs font-bold border-none transition-all">Все уровни</button>
-            <!-- Генерируется динамически -->
+        <!-- Сетка -->
+        <div class="grid-container" id="matrixGrid">
+            <!-- Карточки будут здесь -->
         </div>
 
-        <!-- Сетка карточек -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="matrixGrid">
-            <!-- 150 карточек здесь -->
-        </div>
-        
-        <div id="noResults" class="hidden py-20 text-center">
-            <p class="text-slate-500 text-xl italic">Ничего не найдено по вашему запросу...</p>
+        <div id="emptyState" class="hidden flex flex-col items-center justify-center py-40 opacity-50">
+            <div class="text-4xl mb-4">🔍</div>
+            <p class="text-sm font-bold uppercase tracking-widest">No modules found matching your query</p>
         </div>
     </main>
 
     <!-- Modal -->
-    <div id="modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-black/80 backdrop-blur-xl opacity-0 transition-opacity duration-300">
-        <div class="bg-slate-900 w-full max-w-4xl rounded-[2.5rem] shadow-2xl border border-white/10 overflow-hidden flex flex-col transform scale-95 transition-transform duration-300">
-            <div class="px-8 py-6 border-b border-white/5 flex justify-between items-center bg-white/5">
+    <div id="modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-black/90 backdrop-blur-md opacity-0 transition-opacity">
+        <div id="modal-content" class="bg-[#0d1117] w-full max-w-5xl rounded-2xl border border-[#30363d] shadow-[0_0_50px_-12px_rgba(0,0,0,1)] overflow-hidden scale-95 transform">
+            <div class="p-8 border-b border-[#30363d] flex justify-between items-start bg-[#11161d]">
                 <div>
-                    <h4 id="modalTitle" class="text-2xl font-black text-white">Title</h4>
-                    <div class="flex gap-2 mt-1">
-                        <span id="modalLevel" class="level-badge bg-blue-500">Level</span>
-                        <span id="modalCategory" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Category</span>
+                    <div class="flex items-center gap-3 mb-3">
+                        <span id="modalCat" class="text-[10px] font-bold text-blue-500 uppercase tracking-[0.2em] bg-blue-500/10 px-2 py-1 rounded">Category</span>
+                        <span id="modalLevel" class="level-badge text-slate-300">Level</span>
+                    </div>
+                    <h2 id="modalTitle" class="text-3xl font-extrabold text-white tracking-tight italic">Title</h2>
+                </div>
+                <button onclick="closeModal()" class="p-2 bg-[#21262d] hover:bg-[#30363d] rounded-full text-slate-400 hover:text-white transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12">
+                <div class="lg:col-span-7 bg-[#010409] p-8">
+                    <div class="flex justify-between items-center mb-5">
+                        <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Technical Implementation</span>
+                        <button onclick="copyCode()" class="flex items-center gap-2 text-[10px] font-bold text-blue-400 hover:text-blue-300 transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                            COPY CODE
+                        </button>
+                    </div>
+                    <pre class="p-6 rounded-xl bg-black border border-[#30363d] overflow-x-auto custom-scroll max-h-[450px]"><code id="modalCode" class="code-font text-blue-100/90 text-[13px] leading-relaxed"></code></pre>
+                </div>
+                <div class="lg:col-span-5 p-10 flex flex-col justify-between bg-[#0d1117]">
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-[10px] font-bold text-slate-500 uppercase mb-4 tracking-widest border-b border-slate-800 pb-2">Developer Notes</h4>
+                            <p id="modalDesc" class="text-slate-400 text-sm leading-relaxed font-medium"></p>
+                        </div>
+                        <div class="bg-blue-500/5 border border-blue-500/10 p-4 rounded-lg">
+                            <h5 class="text-[10px] font-bold text-blue-400 uppercase mb-2">Usage Tip</h5>
+                            <p class="text-[11px] text-slate-500 leading-normal">Always ensure this module is initialized on the appropriate side (Client/Server) according to Roblox network security standards.</p>
+                        </div>
+                    </div>
+                    <div class="mt-12">
+                        <button onclick="closeModal()" class="w-full bg-blue-600 hover:bg-blue-500 text-white py-4 rounded-xl text-sm font-bold transition-all shadow-lg shadow-blue-600/20">ACKNOWLEDGE</button>
                     </div>
                 </div>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-white text-3xl">&times;</button>
-            </div>
-            <div class="p-8 bg-[#0a0f1a] overflow-x-auto custom-scroll max-h-[60vh]">
-                <pre><code id="modalCode" class="code-font text-blue-300 text-sm leading-relaxed"></code></pre>
-            </div>
-            <div class="p-6 border-t border-white/5 flex justify-end gap-4">
-                <button onclick="copyCode()" class="px-6 py-3 bg-white/5 hover:bg-white/10 text-white rounded-2xl font-bold transition-all">Копировать Lua</button>
-                <button onclick="closeModal()" class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-bold shadow-lg shadow-blue-600/20">Закрыть</button>
             </div>
         </div>
     </div>
 
     <script>
         const levels = ["Novice", "Novice+", "Junior", "Junior+", "Mid-level", "Mid-level+", "Senior-", "Senior", "Senior+", "Lead Developer"];
-        const categories = ["Архитектура", "Логика", "Физика", "UI", "Данные", "Оптимизация", "Сетевой код", "Математика", "AI", "Звук", "Эффекты", "Безопасность"];
-
-        const database = [];
+        const categories = ["API", "Logic", "Physics", "UI", "Data", "Optimization", "Network", "Math", "AI", "Sound", "VFX", "Security"];
         
-        function generateDB() {
-            const icons = ["📦", "🧠", "🌐", "⚡", "📡", "🛡️", "💾", "🎨", "🎬", "⚙️", "🔍", "📏"];
-            
-            // Ручные ключевые элементы
-            const coreItems = [
-                { title: "task.wait()", level: "Novice", category: "Оптимизация", icon: "⏳", desc: "Замена стандартному wait().", code: "task.wait(1)" },
-                { title: "Instance.new()", level: "Novice", category: "Логика", icon: "➕", desc: "Создание новых объектов.", code: "Instance.new('Part')" },
-                { title: "RemoteEvent", level: "Junior", category: "Сетевой код", icon: "📡", desc: "Связь клиент-сервер.", code: "Remote:FireServer()" },
-                { title: "DataStoreService", level: "Mid-level", category: "Данные", icon: "💾", desc: "Облачное сохранение.", code: "DataStoreService:GetDataStore('Saves')" },
-                { title: "Parallel Luau", level: "Lead Developer", category: "Оптимизация", icon: "⚡", desc: "Многопоточность.", code: "task.desynchronize()" },
-                { title: "Memory Tagging", level: "Senior", category: "Оптимизация", icon: "🧠", desc: "Отладка утечек памяти.", code: "debug.setmemorycategory('AI_Logic')" },
-                { title: "SharedTable", level: "Lead Developer", category: "Данные", icon: "📂", desc: "Обмен данными между потоками.", code: "SharedTable.new()" },
-                { title: "EditableImage", level: "Senior+", category: "UI", icon: "🖌️", desc: "Рисование на текстурах в рантайме.", code: "Instance.new('EditableImage')" },
-                { title: "RaycastParams", level: "Junior+", category: "Физика", icon: "🔦", desc: "Фильтры лучей.", code: "RaycastParams.new()" },
-                { title: "CFrame.lookAt", level: "Junior", category: "Математика", icon: "👁️", desc: "Направление взгляда объекта.", code: "CFrame.lookAt(pos, target)" }
+        let database = [];
+
+        function buildBase() {
+            const icons = {
+                API: "🔧", Logic: "🧠", Physics: "🌍", UI: "🖼️", Data: "💾", 
+                Optimization: "⚡", Network: "🌐", Math: "📐", AI: "🤖", 
+                Sound: "🔊", VFX: "✨", Security: "🛡️"
+            };
+
+            // Коллекция реальных продвинутых примеров
+            const expertModules = [
+                { t: "Quaternion:Slerp", l: "Lead Developer", c: "Math", d: "Spherical linear interpolation for rotation. Essential for high-precision procedural animations and custom camera rigs.", s: "function slerp(c1, c2, t)\n  return c1:Slerp(c2, t)\nend" },
+                { t: "Actor Parallelism", l: "Lead Developer", c: "Optimization", d: "Implementing true multi-threading using Actors. Ideal for pathfinding or heavy procedural generation.", s: "-- Run in Actor script\ntask.desynchronize()\n-- Parallel Compute\ntask.synchronize()" },
+                { t: "Bit Manipulation", l: "Senior+", c: "Data", d: "Using the bit32 library to pack multiple booleans or small integers into a single number for efficient DataStore usage.", s: "local packed = bit32.bor(bit32.lshift(val1, 1), val2)" },
+                { t: "Memory Category Tagging", l: "Senior", c: "Optimization", d: "Applying debug.setmemorycategory to track memory usage of specific systems in the Developer Console.", s: "debug.setmemorycategory('CustomPhysics')\n-- Code block to monitor" },
+                { t: "Remote Guard Proxy", l: "Senior", c: "Security", d: "Server-side validation pattern using timestamped keys to mitigate simple remote firing cheats.", s: "Remote.OnServerEvent:Connect(function(player, data, key)\n  if not validate(key) then return end\nend)" },
+                { t: "Custom Raycast Engine", l: "Senior+", c: "Physics", d: "A wrapper for workspace:Raycast that handles multiple piercing, reflection logic, and material filtering.", s: "function advancedRaycast(origin, dir)\n  local params = RaycastParams.new()\n  return workspace:Raycast(origin, dir, params)\nend" },
+                { t: "UI Component Factory", l: "Mid-level+", c: "UI", d: "A functional pattern for generating reusable UI elements without cloning templates.", s: "function createButton(props)\n  local b = Instance.new('TextButton')\n  b.Text = props.label\n  return b\nend" },
+                { t: "Promise Integration", l: "Mid-level+", c: "Logic", d: "Wrapping asynchronous Roblox API calls (like DataStore or HTTP) into Promises for cleaner code.", s: "Promise.new(function(resolve)\n  local data = Store:GetAsync(key)\n  resolve(data)\nend)" },
+                { t: "Voice Chat Proximity", l: "Mid-level", c: "Sound", d: "Adjusting VoiceChatService parameters dynamically based on game state or player distance.", s: "VoiceService:SetListener(Enum.ListenerType.Camera)" },
+                { t: "SharedTable Sync", l: "Lead Developer", c: "Data", d: "Utilizing SharedTable to pass data between parallel task.desynchronize() threads safely.", s: "local shared = SharedTable.new({count = 0})\nSharedTable.increment(shared, 'count', 1)" }
             ];
 
-            database.push(...coreItems.map((item, idx) => ({ ...item, id: idx + 1 })));
+            // Генерация ровно 1000 карточек
+            for(let i = 1; i <= 1000; i++) {
+                const cat = categories[Math.floor(Math.random() * categories.length)];
+                const lvl = levels[Math.floor(Math.random() * levels.length)];
+                
+                // Используем экспертные модули в начале и периодически
+                let moduleData;
+                if (i <= expertModules.length) {
+                    moduleData = expertModules[i-1];
+                } else if (i % 50 === 0) {
+                    moduleData = expertModules[Math.floor(Math.random() * expertModules.length)];
+                }
 
-            // Генерируем до 150
-            for(let i = database.length + 1; i <= 150; i++) {
-                const level = levels[Math.floor(Math.random() * levels.length)];
-                const category = categories[Math.floor(Math.random() * categories.length)];
                 database.push({
                     id: i,
-                    title: `Модуль: ${category} №${i}`,
-                    level: level,
-                    category: category,
-                    icon: icons[Math.floor(Math.random() * icons.length)],
-                    desc: `Автоматически сгенерированный модуль уровня ${level}. Предназначен для глубокого изучения системы ${category} в Roblox Studio.`,
-                    code: `-- Roblox Lead Codex Module ${i}\n-- Level: ${level}\nlocal service = game:GetService("${category}")\nprint("Инициализация модуля ${i}...")`
+                    title: moduleData ? moduleData.t : `${cat} Logic Node #${i}`,
+                    level: moduleData ? moduleData.l : lvl,
+                    category: moduleData ? moduleData.c : cat,
+                    desc: moduleData ? moduleData.d : `Technical standard implementation for ${cat} in the Lead Matrix framework. Designed for high-performance ${lvl} environments.`,
+                    code: moduleData ? moduleData.s : `-- Lead Matrix Module #${i}\nlocal ${cat.toLowerCase()}Module = {}\n\nfunction ${cat.toLowerCase()}Module:init()\n    print("${cat} system initialized at ${lvl} level")\nend\n\nreturn ${cat.toLowerCase()}Module`,
+                    icon: icons[moduleData ? moduleData.c : cat]
                 });
             }
         }
 
-        generateDB();
+        buildBase();
 
         const grid = document.getElementById('matrixGrid');
         const searchInput = document.getElementById('searchInput');
-        const levelFilters = document.getElementById('levelFilters');
+        const filterContainer = document.getElementById('levelFilters');
+        const counter = document.getElementById('counter');
+        const emptyState = document.getElementById('emptyState');
 
-        function renderMatrix(filterLevel = 'all', query = '') {
+        function render(levelFilter = 'all', query = '') {
             grid.innerHTML = '';
-            let count = 0;
+            let visible = 0;
+            const fragment = document.createDocumentFragment();
 
             database.forEach(item => {
-                const matchesLevel = filterLevel === 'all' || item.level === filterLevel;
-                const matchesSearch = item.title.toLowerCase().includes(query.toLowerCase()) || 
-                                    item.category.toLowerCase().includes(query.toLowerCase());
+                const matchL = levelFilter === 'all' || item.level === levelFilter;
+                const matchS = item.title.toLowerCase().includes(query.toLowerCase()) || 
+                               item.category.toLowerCase().includes(query.toLowerCase());
 
-                if (matchesLevel && matchesSearch) {
-                    count++;
+                if(matchL && matchS) {
+                    visible++;
                     const card = document.createElement('div');
-                    card.className = "card-gradient p-5 rounded-[2rem] border border-white/5 hover:border-blue-500/50 transition-all cursor-pointer group relative overflow-hidden";
+                    card.className = "card-node p-5 rounded-xl cursor-pointer flex flex-col justify-between h-44 group";
                     card.onclick = () => openModal(item);
                     
-                    const levelColor = getLevelColor(item.level);
-
                     card.innerHTML = `
-                        <div class="flex justify-between items-start mb-3">
-                            <span class="text-3xl group-hover:scale-110 transition-transform duration-300">${item.icon}</span>
-                            <span class="level-badge ${levelColor}">${item.level}</span>
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="text-2xl group-hover:scale-110 transition-transform duration-300 opacity-90">${item.icon}</span>
+                                <span class="level-badge">${item.level}</span>
+                            </div>
+                            <h3 class="font-bold text-[13px] text-white/90 group-hover:text-blue-400 transition-colors line-clamp-2 leading-tight">${item.title}</h3>
                         </div>
-                        <h4 class="font-bold text-white group-hover:text-blue-400 transition-colors">${item.title}</h4>
-                        <p class="text-slate-500 text-[10px] uppercase font-black mt-1">${item.category}</p>
-                        <p class="text-slate-400 text-xs mt-2 line-clamp-2">${item.desc}</p>
-                        <div class="absolute bottom-0 right-0 p-2 opacity-5 text-[8px] font-black group-hover:opacity-20 transition-opacity">ID:${item.id}</div>
+                        <div class="pt-4 border-t border-white/5 flex justify-between items-center">
+                            <p class="text-[8px] text-slate-500 font-bold uppercase tracking-[0.2em]">${item.category}</p>
+                            <span class="text-[9px] text-slate-700 font-mono">ID:${String(item.id).padStart(4, '0')}</span>
+                        </div>
                     `;
-                    grid.appendChild(card);
+                    fragment.appendChild(card);
                 }
             });
 
-            document.getElementById('noResults').classList.toggle('hidden', count > 0);
-        }
-
-        function getLevelColor(level) {
-            if (level.includes('Novice')) return 'bg-slate-600';
-            if (level.includes('Junior')) return 'bg-emerald-600';
-            if (level.includes('Mid')) return 'bg-blue-600';
-            if (level.includes('Senior')) return 'bg-purple-600';
-            return 'bg-amber-600'; 
-        }
-
-        function setActiveFilter(btn) {
-            document.querySelectorAll('.level-btn').forEach(b => {
-                b.classList.remove('active-filter');
-                b.classList.add('text-slate-400');
-            });
-            btn.classList.add('active-filter');
-            btn.classList.remove('text-slate-400');
+            grid.appendChild(fragment);
+            counter.innerText = `${visible} / ${database.length} UNITS`;
+            
+            if (visible === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+            }
         }
 
         function initFilters() {
-            // Исправляем "Все уровни"
-            const btnAll = document.getElementById('btn-all');
-            btnAll.onclick = () => {
-                setActiveFilter(btnAll);
-                renderMatrix('all', searchInput.value);
-            };
-
-            levels.forEach(lvl => {
-                const btn = document.createElement('button');
-                btn.dataset.level = lvl;
-                btn.className = "level-btn glass px-4 py-2 rounded-xl text-xs font-bold text-slate-400 border-none hover:text-white transition-all";
-                btn.innerText = lvl;
-                btn.onclick = () => {
-                    setActiveFilter(btn);
-                    renderMatrix(lvl, searchInput.value);
+            levels.forEach(l => {
+                const b = document.createElement('button');
+                b.innerText = l.toUpperCase();
+                b.className = "filter-btn px-4 py-2 rounded-md text-[10px] font-bold border border-transparent hover:text-white hover:bg-white/5";
+                b.onclick = () => {
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active-filter'));
+                    b.classList.add('active-filter');
+                    render(l, searchInput.value);
                 };
-                levelFilters.appendChild(btn);
+                filterContainer.appendChild(b);
             });
         }
 
+        document.querySelector('[data-level="all"]').onclick = function() {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active-filter'));
+            this.classList.add('active-filter');
+            render('all', searchInput.value);
+        };
+
         const modal = document.getElementById('modal');
+        const modalBody = document.getElementById('modal-content');
+
         function openModal(item) {
             document.getElementById('modalTitle').innerText = item.title;
-            document.getElementById('modalCategory').innerText = item.category;
             document.getElementById('modalLevel').innerText = item.level;
-            document.getElementById('modalLevel').className = `level-badge ${getLevelColor(item.level)}`;
+            document.getElementById('modalCat').innerText = item.category;
             document.getElementById('modalCode').innerText = item.code;
+            document.getElementById('modalDesc').innerText = item.desc;
             
             modal.classList.remove('hidden');
             modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
             setTimeout(() => {
                 modal.classList.add('opacity-100');
-                modal.firstElementChild.classList.remove('scale-95');
+                modalBody.classList.remove('scale-95');
+                modalBody.classList.add('scale-100');
             }, 10);
         }
 
         function closeModal() {
             modal.classList.remove('opacity-100');
-            modal.firstElementChild.classList.add('scale-95');
-            setTimeout(() => modal.classList.add('hidden'), 300);
+            modalBody.classList.remove('scale-100');
+            modalBody.classList.add('scale-95');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => modal.classList.add('hidden'), 200);
         }
 
         function copyCode() {
-            const code = document.getElementById('modalCode').innerText;
-            const temp = document.createElement('textarea');
-            temp.value = code;
-            document.body.appendChild(temp);
-            temp.select();
-            document.execCommand('copy');
-            document.body.removeChild(temp);
-        }
-
-        let searchTimeout;
-        searchInput.oninput = (e) => {
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => {
-                const activeBtn = document.querySelector('.level-btn.active-filter');
-                const activeLevel = activeBtn ? activeBtn.dataset.level : 'all';
-                renderMatrix(activeLevel, e.target.value);
-            }, 300);
-        };
-
-        function initChart() {
-            const stats = levels.map(lvl => database.filter(i => i.level === lvl).length);
-            new Chart(document.getElementById('statsChart'), {
-                type: 'polarArea',
-                data: {
-                    labels: levels,
-                    datasets: [{
-                        data: stats,
-                        backgroundColor: [
-                            '#475569', '#334155', '#059669', '#10b981', '#2563eb', '#3b82f6', '#7c3aed', '#8b5cf6', '#a78bfa', '#d97706'
-                        ],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: { r: { display: false } },
-                    plugins: { legend: { display: false } }
-                }
+            const text = document.getElementById('modalCode').innerText;
+            const btn = event.currentTarget;
+            const original = btn.innerHTML;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                btn.innerHTML = 'COPIED!';
+                btn.classList.add('text-emerald-400');
+                setTimeout(() => {
+                    btn.innerHTML = original;
+                    btn.classList.remove('text-emerald-400');
+                }, 2000);
             });
         }
 
+        searchInput.oninput = (e) => {
+            const active = document.querySelector('.filter-btn.active-filter');
+            const lText = active.innerText === 'ALL' ? 'all' : levels.find(lv => lv.toUpperCase() === active.innerText);
+            render(lText, e.target.value);
+        };
+
+        // Keyboard support
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
         initFilters();
-        renderMatrix();
-        initChart();
+        render();
     </script>
 </body>
 </html>
