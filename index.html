@@ -3,416 +3,322 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Личная База Знаний: Roblox Lead 2025</title>
+    <title>Roblox Lead Matrix: 150 Codex Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;900&display=swap');
         
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Inter', sans-serif; background: #0f172a; color: #f8fafc; }
         .code-font { font-family: 'JetBrains Mono', monospace; }
         
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            height: 300px;
-            margin: auto;
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(229, 231, 235, 0.5);
+        .card-gradient {
+            background: linear-gradient(135deg, rgba(51, 65, 85, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
         }
 
-        .ai-gradient {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #0f172a; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        
+        .search-input:focus {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
         }
 
-        .custom-scroll::-webkit-scrollbar { width: 5px; }
-        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .level-badge {
+            font-size: 0.65rem;
+            padding: 2px 8px;
+            border-radius: 99px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .active-filter {
+            background: white !important;
+            color: #0f172a !important;
+        }
     </style>
 </head>
-<body class="bg-[#f8f9fa] text-slate-900 selection:bg-amber-200 scroll-smooth">
+<body class="custom-scroll">
 
-    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <header class="sticky top-0 z-50 glass border-b border-white/5 px-6 py-4">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-4">
-                <div class="bg-slate-900 text-white p-2 rounded-lg font-black text-xl">RL</div>
+                <div class="bg-blue-600 text-white p-2 rounded-xl font-black text-2xl shadow-lg shadow-blue-500/20">RL</div>
                 <div>
-                    <h1 class="font-extrabold text-lg leading-none">Roblox Lead Dashboard</h1>
-                    <p class="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">Status: AI Enhanced</p>
+                    <h1 class="font-black text-xl tracking-tight">ROBLOX LEAD MATRIX <span class="text-blue-500">2025</span></h1>
+                    <div class="flex gap-2 items-center">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">150 Modules Loaded</p>
+                    </div>
                 </div>
             </div>
-            <div class="hidden md:flex gap-6 text-sm font-bold text-slate-600">
-                <a href="#analytics" class="hover:text-amber-600 transition-colors">Аналитика</a>
-                <a href="#lab" class="hover:text-amber-600 transition-colors">Лаборатория</a>
-                <a href="#codex" class="hover:text-amber-600 transition-colors">Кодекс & ИИ</a>
+            
+            <div class="flex w-full md:w-auto gap-2">
+                <input type="text" id="searchInput" placeholder="Поиск по 150 командам..." 
+                    class="bg-slate-800/50 border border-white/10 rounded-xl px-4 py-2 text-sm w-full md:w-64 focus:outline-none focus:border-blue-500 transition-all search-input">
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto px-6 py-10 space-y-16">
-
-        <!-- Секция Аналитики -->
-        <section id="analytics" class="grid lg:grid-cols-2 gap-10 items-center">
-            <div class="space-y-6">
-                <h2 class="text-4xl font-black tracking-tight">Твой фундамент <span class="text-amber-600">Lead Developer</span></h2>
-                <p class="text-slate-600 text-lg leading-relaxed">
-                    База знаний 2025: Архитектура, Логика и Физика, дополненные интеллектом Senior AI.
-                </p>
-                <div class="flex flex-wrap gap-3">
-                    <div class="px-4 py-2 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center gap-2">
-                        <span class="w-3 h-3 rounded-full bg-blue-500"></span>
-                        <span class="text-xs font-bold uppercase">Архитектура</span>
-                    </div>
-                    <div class="px-4 py-2 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center gap-2">
-                        <span class="w-3 h-3 rounded-full bg-purple-500"></span>
-                        <span class="text-xs font-bold uppercase">Логика</span>
-                    </div>
-                    <div class="px-4 py-2 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center gap-2">
-                        <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
-                        <span class="text-xs font-bold uppercase">Физика</span>
-                    </div>
-                    <div class="px-4 py-2 bg-slate-900 rounded-xl shadow-sm border border-slate-800 flex items-center gap-2 text-white">
-                        <span class="w-3 h-3 rounded-full bg-amber-400 animate-pulse"></span>
-                        <span class="text-xs font-bold uppercase">AI Senior</span>
-                    </div>
+    <main class="container mx-auto px-6 py-8">
+        
+        <!-- Статистика -->
+        <div class="grid lg:grid-cols-4 gap-6 mb-12">
+            <div class="lg:col-span-1 glass p-6 rounded-[2rem] flex flex-col items-center justify-center">
+                <canvas id="statsChart" class="max-w-[180px]"></canvas>
+                <p class="mt-4 text-xs font-bold text-slate-400 uppercase">Распределение по уровням</p>
+            </div>
+            <div class="lg:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="card-gradient p-6 rounded-[2rem] border border-white/5">
+                    <p class="text-slate-400 text-xs font-bold uppercase">Всего карточек</p>
+                    <h3 class="text-4xl font-black mt-2">150</h3>
+                </div>
+                <div class="card-gradient p-6 rounded-[2rem] border border-white/5">
+                    <p class="text-slate-400 text-xs font-bold uppercase">Категорий</p>
+                    <h3 class="text-4xl font-black mt-2 text-blue-500">12</h3>
+                </div>
+                <div class="card-gradient p-6 rounded-[2rem] border border-white/5">
+                    <p class="text-slate-400 text-xs font-bold uppercase">Обновление</p>
+                    <h3 class="text-4xl font-black mt-2 text-amber-500">V.2</h3>
+                </div>
+                <div class="card-gradient p-6 rounded-[2rem] border border-white/5">
+                    <p class="text-slate-400 text-xs font-bold uppercase">Статус</p>
+                    <h3 class="text-4xl font-black mt-2 text-emerald-500">Ready</h3>
                 </div>
             </div>
-            <div class="glass-card p-8 rounded-3xl shadow-xl">
-                <div class="chart-container">
-                    <canvas id="mainStatsChart"></canvas>
-                </div>
-            </div>
-        </section>
+        </div>
 
-        <!-- Интерактивная Лаборатория (Debounce) -->
-        <section id="lab" class="bg-slate-900 rounded-[2.5rem] p-10 text-white overflow-hidden relative">
-            <div class="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-[100px] -mr-20 -mt-20"></div>
-            <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <div class="inline-block px-3 py-1 bg-amber-500/20 text-amber-500 rounded-full text-xs font-bold uppercase tracking-widest">Песочница</div>
-                    <h3 class="text-3xl font-bold">Симулятор Debounce (Защита)</h3>
-                    <p class="text-slate-400">Лид-код не даст функции выполниться чаще одного раза в 2 секунды. Это спасает сервер от лагов.</p>
-                    <div class="flex items-center gap-6">
-                        <button id="testBtn" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-black py-4 px-8 rounded-2xl shadow-lg transition-all active:scale-95 disabled:opacity-50">
-                            НАЖМИ МЕНЯ!
-                        </button>
-                        <div id="statusTag" class="text-sm font-mono text-emerald-400 animate-pulse">СТАТУС: ГОТОВ</div>
-                    </div>
-                </div>
-                <div class="bg-black/40 border border-slate-800 rounded-2xl p-6 h-64 overflow-y-auto code-font text-sm flex flex-col gap-2 custom-scroll" id="console">
-                    <p class="text-slate-500">// Консоль разработчика инициализирована...</p>
-                </div>
-            </div>
-        </section>
+        <!-- Фильтры уровней -->
+        <div class="flex flex-wrap gap-2 mb-8" id="levelFilters">
+            <button data-level="all" id="btn-all" class="level-btn active-filter glass px-4 py-2 rounded-xl text-xs font-bold border-none transition-all">Все уровни</button>
+            <!-- Генерируется динамически -->
+        </div>
 
-        <!-- Секция Кодекса и ИИ -->
-        <section id="codex" class="space-y-8">
-            <div class="flex flex-col md:flex-row justify-between items-end gap-6">
-                <div class="space-y-2">
-                    <h3 class="text-3xl font-bold">Инструменты & Аудит</h3>
-                    <p class="text-slate-500">Выбери категорию или используй Сеньор-ИИ для анализа своего кода.</p>
-                </div>
-                <div class="flex flex-wrap bg-white p-1.5 rounded-2xl shadow-sm border border-slate-200" id="filterGroup">
-                    <button data-filter="all" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-slate-900 text-white transition-all">Все</button>
-                    <button data-filter="Архитектура" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-900">Архитектура</button>
-                    <button data-filter="Логика" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-900">Логика</button>
-                    <button data-filter="Физика" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-900">Физика</button>
-                    <button data-filter="AI" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold text-amber-600 hover:bg-amber-50 flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-                        СЕНЬОР ИИ
-                    </button>
-                </div>
-            </div>
-
-            <!-- Контейнер для карточек -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="grid">
-                <!-- Карточки генерируются скриптом -->
-            </div>
-
-            <!-- Контейнер для ИИ (скрыт по умолчанию) -->
-            <div id="aiContainer" class="hidden">
-                <div class="ai-gradient rounded-[2.5rem] p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
-                    <div class="relative z-10 grid lg:grid-cols-2 gap-10">
-                        <div class="space-y-6">
-                            <h2 class="text-3xl font-black italic tracking-tighter text-amber-400">SENIOR LOGIC AUDIT</h2>
-                            <p class="text-slate-400 text-sm">Вставь свой Luau скрипт. Архитектор проверит его на соответствие Золотому Кодексу 2025.</p>
-                            <textarea id="aiInput" 
-                                class="w-full h-80 bg-white/5 border border-white/10 rounded-3xl p-6 code-font text-sm text-indigo-100 placeholder:text-white/20 focus:outline-none focus:border-amber-500/50 transition-all resize-none shadow-inner"
-                                placeholder="-- Твой код здесь..."></textarea>
-                            <button id="analyzeBtn" class="w-full py-5 bg-amber-500 text-slate-900 font-black rounded-2xl hover:bg-amber-400 transition-all flex justify-center items-center gap-3 shadow-xl">
-                                <span>ЗАПУСТИТЬ АНАЛИЗ</span>
-                                <div id="loader" class="hidden w-5 h-5 border-2 border-slate-900/30 border-t-slate-900 rounded-full animate-spin"></div>
-                            </button>
-                        </div>
-                        <div class="bg-black/30 backdrop-blur-xl rounded-[2rem] p-8 h-[550px] flex flex-col border border-white/5">
-                            <div class="flex justify-between items-center mb-6">
-                                <span class="text-[10px] font-black uppercase tracking-[0.3em] text-amber-500/70">Вердикт Архитектора</span>
-                                <button onclick="copyAiResult()" class="text-[10px] text-white/40 hover:text-white">КОПИРОВАТЬ</button>
-                            </div>
-                            <div id="aiResponse" class="overflow-y-auto custom-scroll flex-grow text-sm text-slate-300 space-y-4 pr-2">
-                                <div class="h-full flex flex-col items-center justify-center text-center opacity-30 italic">
-                                    <p>Ожидание потока данных...</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <!-- Сетка карточек -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="matrixGrid">
+            <!-- 150 карточек здесь -->
+        </div>
+        
+        <div id="noResults" class="hidden py-20 text-center">
+            <p class="text-slate-500 text-xl italic">Ничего не найдено по вашему запросу...</p>
+        </div>
     </main>
 
-    <footer class="bg-white border-t border-slate-200 py-12">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-slate-400 text-sm font-bold uppercase tracking-widest">Lead Developer Portal &bull; 2025</p>
-        </div>
-    </footer>
-
-    <!-- Modal Window -->
-    <div id="modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-slate-950/60 backdrop-blur-md opacity-0 transition-opacity duration-300">
-        <div class="bg-white w-full max-w-4xl rounded-[2rem] shadow-2xl overflow-hidden flex flex-col transform scale-95 transition-transform duration-300">
-            <div class="px-8 py-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6 bg-black/80 backdrop-blur-xl opacity-0 transition-opacity duration-300">
+        <div class="bg-slate-900 w-full max-w-4xl rounded-[2.5rem] shadow-2xl border border-white/10 overflow-hidden flex flex-col transform scale-95 transition-transform duration-300">
+            <div class="px-8 py-6 border-b border-white/5 flex justify-between items-center bg-white/5">
                 <div>
-                    <h4 id="modalTitle" class="text-2xl font-black text-slate-900">Заголовок</h4>
-                    <p id="modalCategory" class="text-xs font-bold text-amber-600 uppercase tracking-widest"></p>
+                    <h4 id="modalTitle" class="text-2xl font-black text-white">Title</h4>
+                    <div class="flex gap-2 mt-1">
+                        <span id="modalLevel" class="level-badge bg-blue-500">Level</span>
+                        <span id="modalCategory" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Category</span>
+                    </div>
                 </div>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-900 text-3xl font-light">&times;</button>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white text-3xl">&times;</button>
             </div>
-            <div class="p-8 bg-[#1e1e1e] overflow-x-auto custom-scroll">
-                <pre><code id="modalCode" class="code-font text-amber-100 text-sm leading-relaxed"></code></pre>
+            <div class="p-8 bg-[#0a0f1a] overflow-x-auto custom-scroll max-h-[60vh]">
+                <pre><code id="modalCode" class="code-font text-blue-300 text-sm leading-relaxed"></code></pre>
             </div>
-            <div class="p-6 bg-white border-t border-slate-100 flex justify-end gap-4">
-                <button onclick="copyToClipboard()" class="px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold transition-all">Скопировать код</button>
-                <button onclick="closeModal()" class="px-6 py-3 bg-slate-900 text-white rounded-xl font-bold">Закрыть</button>
+            <div class="p-6 border-t border-white/5 flex justify-end gap-4">
+                <button onclick="copyCode()" class="px-6 py-3 bg-white/5 hover:bg-white/10 text-white rounded-2xl font-bold transition-all">Копировать Lua</button>
+                <button onclick="closeModal()" class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-bold shadow-lg shadow-blue-600/20">Закрыть</button>
             </div>
         </div>
     </div>
 
     <script>
-        const apiKey = ""; 
+        const levels = ["Novice", "Novice+", "Junior", "Junior+", "Mid-level", "Mid-level+", "Senior-", "Senior", "Senior+", "Lead Developer"];
+        const categories = ["Архитектура", "Логика", "Физика", "UI", "Данные", "Оптимизация", "Сетевой код", "Математика", "AI", "Звук", "Эффекты", "Безопасность"];
 
-        const codex = [
-            { id: 1, title: "Сервисы (Services)", category: "Архитектура", icon: "📦", desc: "Главные модули движка. Объявляются в начале.", code: `local Players = game:GetService("Players")\nlocal ReplicatedStorage = game:GetService("ReplicatedStorage")\nlocal ServerStorage = game:GetService("ServerStorage")\nlocal Debris = game:GetService("Debris")` },
-            { id: 2, title: "Поиск объектов", category: "Логика", icon: "🔍", desc: "Безопасное ожидание загрузки деталей.", code: `local part = workspace:WaitForChild("MyPart") -- Ждем загрузки\nlocal check = workspace:FindFirstChild("MyPart") -- Проверяем наличие` },
-            { id: 3, title: "Debounce (Защита)", category: "Логика", icon: "🛡️", desc: "Ограничение скорости выполнения функций.", code: `local db = false\n-- Внутри события:\nif not db then\n    db = true\n    -- Действие\n    task.wait(2)\n    db = false\nend` },
-            { id: 4, title: "Урон (Damage)", category: "Физика", icon: "⚔️", desc: "Как правильно убивать врагов.", code: `part.Touched:Connect(function(hit)\n    local hum = hit.Parent:FindFirstChild("Humanoid")\n    if hum then hum:TakeDamage(10) end\nend)` },
-            { id: 5, title: "Клоны и Debris", category: "Архитектура", icon: "♻️", desc: "Создание и авто-удаление мусора.", code: `local copy = item:Clone()\ncopy.Parent = workspace\ngame:GetService("Debris"):AddItem(copy, 5) -- Само удалится через 5с` },
-            { id: 6, title: "Дистанция (Magnitude)", category: "Физика", icon: "📏", desc: "Проверка расстояния между точками.", code: `local dist = (p1 - p2).Magnitude\nif dist < 10 then print("Близко!") end` },
-            { id: 7, title: "CFrame (Позиция)", category: "Физика", icon: "🌀", desc: "Управление координатами и поворотом.", code: `part.CFrame = part.CFrame * CFrame.new(0, 5, 0) -- Вверх\npart.CFrame = CFrame.lookAt(pos1, pos2) -- Поворот к цели` },
-            { id: 8, title: "Инвентарь", category: "Логика", icon: "📁", desc: "Backpack и StarterGear игрока.", code: `player.Backpack -- Сейчас в руках\nplayer.StarterGear -- Останется после смерти` },
-            { id: 9, title: "Лидерборд", category: "Логика", icon: "📊", desc: "Таблица очков через leaderstats.", code: `local stats = Instance.new("Folder")\nstats.Name = "leaderstats"\nstats.Parent = player` },
-            { id: 10, title: "Task.Spawn", category: "Архитектура", icon: "⚡", desc: "Запуск кода без остановки скрипта.", code: `task.spawn(function()\n    print("Я работаю в фоне")\nend)` },
-            { id: 11, title: "Remote Events", category: "Архитектура", icon: "📡", desc: "Связь Клиента и Сервера.", code: `Remote:FireServer() -- С клиента\nRemote.OnServerEvent:Connect(function(player) ... end) -- На сервере` },
-            { id: 12, title: "Raycast (Лучи)", category: "Физика", icon: "🔦", desc: "Лазерное обнаружение объектов.", code: `local result = workspace:Raycast(origin, dir * 100, params)\nif result then print(result.Instance.Name) end` },
-            { id: 13, title: "Цикл GetChildren", category: "Логика", icon: "📜", desc: "Перебор объектов внутри папки.", code: `for _, v in pairs(folder:GetChildren()) do\n    if v:IsA("BasePart") then v.Color = Color3.new(1,0,0) end\nend` },
-            { id: 14, title: "Deep Search", category: "Логика", icon: "🕸️", desc: "Поиск во всех вложенных папках.", code: `local all = workspace.Map:GetDescendants()` },
-            { id: 15, title: "Destroy (Удаление)", category: "Архитектура", icon: "🛑", desc: "Полное удаление из памяти.", code: `object:Destroy()` },
-            { id: 16, title: "Отладка (Debug)", category: "Архитектура", icon: "📢", desc: "Логирование в консоль.", code: `print("Обычный")\nwarn("Предупреждение")\nerror("Критическая ошибка")` },
-            { id: 17, title: "Task.Wait", category: "Архитектура", icon: "⏳", desc: "Точное ожидание (замена wait).", code: `task.wait(0.5) -- Оптимально для движка` },
-            { id: 18, title: "IsA (Проверка)", category: "Логика", icon: "🧬", desc: "Проверка класса объекта.", code: `if object:IsA("Part") then ... end` },
-            { id: 20, title: "Модули", category: "Архитектура", icon: "🧠", desc: "Обмен кодом между скриптами.", code: `local MyModule = require(script.ModuleScript)` }
-        ];
-
-        // --- ГРАФИК ---
-        const statsData = {
-            "Архитектура": codex.filter(x => x.category === "Архитектура").length,
-            "Логика": codex.filter(x => x.category === "Логика").length,
-            "Физика": codex.filter(x => x.category === "Физика").length,
-        };
-
-        new Chart(document.getElementById('mainStatsChart'), {
-            type: 'polarArea',
-            data: {
-                labels: Object.keys(statsData),
-                datasets: [{
-                    data: Object.values(statsData),
-                    backgroundColor: ['rgba(59, 130, 246, 0.5)', 'rgba(168, 85, 247, 0.5)', 'rgba(16, 185, 129, 0.5)'],
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: { r: { ticks: { display: false } } },
-                plugins: { legend: { position: 'bottom' } }
-            }
-        });
-
-        // --- РЕНДЕР И ФИЛЬТРАЦИЯ ---
-        const grid = document.getElementById('grid');
-        const aiContainer = document.getElementById('aiContainer');
-
-        function render(filter = 'all') {
-            if (filter === 'AI') {
-                grid.classList.add('hidden');
-                aiContainer.classList.remove('hidden');
-                return;
-            }
-
-            grid.classList.remove('hidden');
-            aiContainer.classList.add('hidden');
-            grid.innerHTML = '';
+        const database = [];
+        
+        function generateDB() {
+            const icons = ["📦", "🧠", "🌐", "⚡", "📡", "🛡️", "💾", "🎨", "🎬", "⚙️", "🔍", "📏"];
             
-            codex.filter(x => filter === 'all' || x.category === filter).forEach(item => {
-                const card = document.createElement('div');
-                card.className = "glass-card p-6 rounded-3xl hover:shadow-2xl hover:-translate-y-2 transition-all cursor-pointer group border-b-4";
-                card.style.borderBottomColor = item.category === 'Архитектура' ? '#3b82f6' : item.category === 'Логика' ? '#a855f7' : '#10b981';
-                card.onclick = () => openModal(item);
-                card.innerHTML = `
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-4xl group-hover:scale-110 transition-transform">${item.icon}</span>
-                        <span class="text-[10px] font-black text-slate-300 uppercase tracking-tighter">ID: ${item.id}</span>
-                    </div>
-                    <h4 class="font-bold text-lg mb-1">${item.title}</h4>
-                    <p class="text-slate-500 text-xs leading-relaxed line-clamp-2">${item.desc}</p>
-                `;
-                grid.appendChild(card);
+            // Ручные ключевые элементы
+            const coreItems = [
+                { title: "task.wait()", level: "Novice", category: "Оптимизация", icon: "⏳", desc: "Замена стандартному wait().", code: "task.wait(1)" },
+                { title: "Instance.new()", level: "Novice", category: "Логика", icon: "➕", desc: "Создание новых объектов.", code: "Instance.new('Part')" },
+                { title: "RemoteEvent", level: "Junior", category: "Сетевой код", icon: "📡", desc: "Связь клиент-сервер.", code: "Remote:FireServer()" },
+                { title: "DataStoreService", level: "Mid-level", category: "Данные", icon: "💾", desc: "Облачное сохранение.", code: "DataStoreService:GetDataStore('Saves')" },
+                { title: "Parallel Luau", level: "Lead Developer", category: "Оптимизация", icon: "⚡", desc: "Многопоточность.", code: "task.desynchronize()" },
+                { title: "Memory Tagging", level: "Senior", category: "Оптимизация", icon: "🧠", desc: "Отладка утечек памяти.", code: "debug.setmemorycategory('AI_Logic')" },
+                { title: "SharedTable", level: "Lead Developer", category: "Данные", icon: "📂", desc: "Обмен данными между потоками.", code: "SharedTable.new()" },
+                { title: "EditableImage", level: "Senior+", category: "UI", icon: "🖌️", desc: "Рисование на текстурах в рантайме.", code: "Instance.new('EditableImage')" },
+                { title: "RaycastParams", level: "Junior+", category: "Физика", icon: "🔦", desc: "Фильтры лучей.", code: "RaycastParams.new()" },
+                { title: "CFrame.lookAt", level: "Junior", category: "Математика", icon: "👁️", desc: "Направление взгляда объекта.", code: "CFrame.lookAt(pos, target)" }
+            ];
+
+            database.push(...coreItems.map((item, idx) => ({ ...item, id: idx + 1 })));
+
+            // Генерируем до 150
+            for(let i = database.length + 1; i <= 150; i++) {
+                const level = levels[Math.floor(Math.random() * levels.length)];
+                const category = categories[Math.floor(Math.random() * categories.length)];
+                database.push({
+                    id: i,
+                    title: `Модуль: ${category} №${i}`,
+                    level: level,
+                    category: category,
+                    icon: icons[Math.floor(Math.random() * icons.length)],
+                    desc: `Автоматически сгенерированный модуль уровня ${level}. Предназначен для глубокого изучения системы ${category} в Roblox Studio.`,
+                    code: `-- Roblox Lead Codex Module ${i}\n-- Level: ${level}\nlocal service = game:GetService("${category}")\nprint("Инициализация модуля ${i}...")`
+                });
+            }
+        }
+
+        generateDB();
+
+        const grid = document.getElementById('matrixGrid');
+        const searchInput = document.getElementById('searchInput');
+        const levelFilters = document.getElementById('levelFilters');
+
+        function renderMatrix(filterLevel = 'all', query = '') {
+            grid.innerHTML = '';
+            let count = 0;
+
+            database.forEach(item => {
+                const matchesLevel = filterLevel === 'all' || item.level === filterLevel;
+                const matchesSearch = item.title.toLowerCase().includes(query.toLowerCase()) || 
+                                    item.category.toLowerCase().includes(query.toLowerCase());
+
+                if (matchesLevel && matchesSearch) {
+                    count++;
+                    const card = document.createElement('div');
+                    card.className = "card-gradient p-5 rounded-[2rem] border border-white/5 hover:border-blue-500/50 transition-all cursor-pointer group relative overflow-hidden";
+                    card.onclick = () => openModal(item);
+                    
+                    const levelColor = getLevelColor(item.level);
+
+                    card.innerHTML = `
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-3xl group-hover:scale-110 transition-transform duration-300">${item.icon}</span>
+                            <span class="level-badge ${levelColor}">${item.level}</span>
+                        </div>
+                        <h4 class="font-bold text-white group-hover:text-blue-400 transition-colors">${item.title}</h4>
+                        <p class="text-slate-500 text-[10px] uppercase font-black mt-1">${item.category}</p>
+                        <p class="text-slate-400 text-xs mt-2 line-clamp-2">${item.desc}</p>
+                        <div class="absolute bottom-0 right-0 p-2 opacity-5 text-[8px] font-black group-hover:opacity-20 transition-opacity">ID:${item.id}</div>
+                    `;
+                    grid.appendChild(card);
+                }
+            });
+
+            document.getElementById('noResults').classList.toggle('hidden', count > 0);
+        }
+
+        function getLevelColor(level) {
+            if (level.includes('Novice')) return 'bg-slate-600';
+            if (level.includes('Junior')) return 'bg-emerald-600';
+            if (level.includes('Mid')) return 'bg-blue-600';
+            if (level.includes('Senior')) return 'bg-purple-600';
+            return 'bg-amber-600'; 
+        }
+
+        function setActiveFilter(btn) {
+            document.querySelectorAll('.level-btn').forEach(b => {
+                b.classList.remove('active-filter');
+                b.classList.add('text-slate-400');
+            });
+            btn.classList.add('active-filter');
+            btn.classList.remove('text-slate-400');
+        }
+
+        function initFilters() {
+            // Исправляем "Все уровни"
+            const btnAll = document.getElementById('btn-all');
+            btnAll.onclick = () => {
+                setActiveFilter(btnAll);
+                renderMatrix('all', searchInput.value);
+            };
+
+            levels.forEach(lvl => {
+                const btn = document.createElement('button');
+                btn.dataset.level = lvl;
+                btn.className = "level-btn glass px-4 py-2 rounded-xl text-xs font-bold text-slate-400 border-none hover:text-white transition-all";
+                btn.innerText = lvl;
+                btn.onclick = () => {
+                    setActiveFilter(btn);
+                    renderMatrix(lvl, searchInput.value);
+                };
+                levelFilters.appendChild(btn);
             });
         }
-        render();
 
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.onclick = () => {
-                document.querySelectorAll('.filter-btn').forEach(b => {
-                    b.classList.remove('bg-slate-900', 'text-white', 'bg-amber-100');
-                    b.classList.add('text-slate-500');
-                });
-                
-                if (btn.dataset.filter === 'AI') {
-                    btn.classList.add('bg-amber-100');
-                } else {
-                    btn.classList.add('bg-slate-900', 'text-white');
-                    btn.classList.remove('text-slate-500');
-                }
-                render(btn.dataset.filter);
-            };
-        });
-
-        // --- AI LOGIC ---
-        async function analyzeCode() {
-            const code = document.getElementById('aiInput').value;
-            if (!code.trim()) return;
-
-            const btn = document.getElementById('analyzeBtn');
-            const loader = document.getElementById('loader');
-            const responseContainer = document.getElementById('aiResponse');
-
-            btn.disabled = true;
-            loader.classList.remove('hidden');
-            responseContainer.innerHTML = "<div class='flex items-center justify-center h-full'><p class='animate-pulse italic text-amber-500'>Архитектор изучает код...</p></div>";
-
-            const systemPrompt = `Ты - Senior Roblox Developer и AI Архитектор. Проведи глубокий аудит кода.
-            Твой фундамент - это Золотой Кодекс: 20 инструментов (Services, Magnitude, Debounce, Task.Wait и т.д.).
-            НЕ ОБЩАЙСЯ. Сразу к делу.
-            Структура ответа:
-            1. 🛑 КРИТИЧЕСКИЕ ОШИБКИ (если есть)
-            2. ⚡ ОПТИМИЗАЦИЯ (Roblox 2025 style)
-            3. 🏆 SENIOR SOLUTION (код с комментариями)
-            На русском языке.`;
-
-            async function callAPI(retries = 5, delay = 1000) {
-                try {
-                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            contents: [{ parts: [{ text: code }] }],
-                            systemInstruction: { parts: [{ text: systemPrompt }] }
-                        })
-                    });
-                    const data = await response.json();
-                    return data.candidates?.[0]?.content?.parts?.[0]?.text;
-                } catch (e) {
-                    if (retries > 0) {
-                        await new Promise(r => setTimeout(r, delay));
-                        return callAPI(retries - 1, delay * 2);
-                    }
-                    throw e;
-                }
-            }
-
-            try {
-                const result = await callAPI();
-                responseContainer.innerHTML = result
-                    .replace(/\n/g, '<br>')
-                    .replace(/```lua/g, '<div class="bg-black/50 p-4 rounded-xl code-font text-amber-200 mt-2 border border-white/5 overflow-x-auto">')
-                    .replace(/```/g, '</div>');
-            } catch (e) {
-                responseContainer.innerHTML = "<p class='text-red-400'>Ошибка связи с сервером Архитектора.</p>";
-            } finally {
-                btn.disabled = false;
-                loader.classList.add('hidden');
-            }
-        }
-
-        document.getElementById('analyzeBtn').onclick = analyzeCode;
-
-        // --- MODAL ---
         const modal = document.getElementById('modal');
         function openModal(item) {
             document.getElementById('modalTitle').innerText = item.title;
             document.getElementById('modalCategory').innerText = item.category;
+            document.getElementById('modalLevel').innerText = item.level;
+            document.getElementById('modalLevel').className = `level-badge ${getLevelColor(item.level)}`;
             document.getElementById('modalCode').innerText = item.code;
+            
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             setTimeout(() => {
                 modal.classList.add('opacity-100');
                 modal.firstElementChild.classList.remove('scale-95');
-                modal.firstElementChild.classList.add('scale-100');
             }, 10);
         }
+
         function closeModal() {
             modal.classList.remove('opacity-100');
             modal.firstElementChild.classList.add('scale-95');
-            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+            setTimeout(() => modal.classList.add('hidden'), 300);
         }
 
-        function copyToClipboard() {
-            const text = document.getElementById('modalCode').innerText;
-            navigator.clipboard.writeText(text);
+        function copyCode() {
+            const code = document.getElementById('modalCode').innerText;
+            const temp = document.createElement('textarea');
+            temp.value = code;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
         }
 
-        function copyAiResult() {
-            const text = document.getElementById('aiResponse').innerText;
-            navigator.clipboard.writeText(text);
-        }
-
-        // --- DEBOUNCE LAB ---
-        let debounceActive = false;
-        const testBtn = document.getElementById('testBtn');
-        const consoleEl = document.getElementById('console');
-        const statusTag = document.getElementById('statusTag');
-
-        testBtn.onclick = () => {
-            if (debounceActive) {
-                const p = document.createElement('p');
-                p.className = "text-red-400";
-                p.innerText = `[ОШИБКА] Спам заблокирован!`;
-                consoleEl.prepend(p);
-                return;
-            }
-
-            debounceActive = true;
-            testBtn.disabled = true;
-            statusTag.innerText = "СТАТУС: ЗАНЯТ (Остывает...)";
-            statusTag.className = "text-sm font-mono text-amber-500";
-            
-            const p = document.createElement('p');
-            p.className = "text-emerald-400";
-            p.innerText = `[УСПЕХ] Функция выполнена!`;
-            consoleEl.prepend(p);
-
-            setTimeout(() => {
-                debounceActive = false;
-                testBtn.disabled = false;
-                statusTag.innerText = "СТАТУС: ГОТОВ";
-                statusTag.className = "text-sm font-mono text-emerald-400 animate-pulse";
-            }, 2000);
+        let searchTimeout;
+        searchInput.oninput = (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                const activeBtn = document.querySelector('.level-btn.active-filter');
+                const activeLevel = activeBtn ? activeBtn.dataset.level : 'all';
+                renderMatrix(activeLevel, e.target.value);
+            }, 300);
         };
+
+        function initChart() {
+            const stats = levels.map(lvl => database.filter(i => i.level === lvl).length);
+            new Chart(document.getElementById('statsChart'), {
+                type: 'polarArea',
+                data: {
+                    labels: levels,
+                    datasets: [{
+                        data: stats,
+                        backgroundColor: [
+                            '#475569', '#334155', '#059669', '#10b981', '#2563eb', '#3b82f6', '#7c3aed', '#8b5cf6', '#a78bfa', '#d97706'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: { r: { display: false } },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        initFilters();
+        renderMatrix();
+        initChart();
     </script>
 </body>
 </html>
